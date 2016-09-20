@@ -8,12 +8,30 @@
 
 import UIKit
 import AVFoundation
+import GPUImage
 
 class CameraView: UIView {
     
     override func willMove(toWindow newWindow: UIWindow?) {
+        if !setupYet {
+            setupYet = true
+            addSubview(outputView)
+            outputView.frame = bounds
+            outputView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            outputView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill
+            
+            rgbAdjust.addTarget(vignette)
+            vignette.addTarget(blur)
+            vignette.addTarget(mix)
+            blur.addTarget(mix)
+            mix.addTarget(outputView)
+            
+            spookiness = 1
+        }
         running = (newWindow != nil)
     }
+    
+    var setupYet = false
     
     var running: Bool = false {
         willSet(newVal) {
@@ -27,85 +45,35 @@ class CameraView: UIView {
         }
     }
     
-    var captureDevice: AVCaptureDevice?
-    var captureSession: AVCaptureSession?
-    var previewLayer: AVCaptureVideoPreviewLayer?
-    var stillImageOutput: AVCaptureStillImageOutput?
-    var metadataOutput: AVCaptureMetadataOutput?
-    
-    // MARK: setup
-    
     func startRunning() {
-        if let device = getDevice() {
-            captureDevice = device
-            self.configureCamera(captureDevice!)
-            captureSession = AVCaptureSession()
-            if captureSession!.canSetSessionPreset(AVCaptureSessionPresetPhoto) {
-                captureSession!.sessionPreset = AVCaptureSessionPreset1920x1080
-            }
-            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
-            previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
-            stillImageOutput = AVCaptureStillImageOutput()
-            captureSession!.addOutput(stillImageOutput!)
-            let captureDeviceInput = try? AVCaptureDeviceInput(device: captureDevice!)
-            captureSession!.addInput(captureDeviceInput)
-            layer.addSublayer(previewLayer!)
-            
-            if let metadataDelegate = metadataObjectsDelegate {
-                metadataOutput = AVCaptureMetadataOutput()
-                captureSession!.addOutput(metadataOutput!)
-                metadataOutput!.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
-                metadataOutput!.setMetadataObjectsDelegate(metadataDelegate, queue: DispatchQueue.main)
-            }
-            
-            captureSession!.startRunning()
-        }
+        camera = GPUImageStillCamera(sessionPreset: AVCaptureSessionPresetMedium, cameraPosition: .back)
+        camera!.startCapture()
+        camera!.addTarget(rgbAdjust)
+        camera!.outputImageOrientation = .portrait
     }
-    
-    func getDevice() -> AVCaptureDevice? {
-        for device in AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as! [AVCaptureDevice] {
-            if device.position == AVCaptureDevicePosition.back {
-                return device
-            }
-        }
-        return nil
-    }
-    
-    func configureCamera(_ camera: AVCaptureDevice) {
-        do {
-            try camera.lockForConfiguration()
-            if camera.isAutoFocusRangeRestrictionSupported {
-                camera.autoFocusRangeRestriction = AVCaptureAutoFocusRangeRestriction.near
-            }
-            if camera.isLowLightBoostSupported {
-                camera.automaticallyEnablesLowLightBoostWhenAvailable = true
-            }
-            camera.unlockForConfiguration()
-        } catch _ {
-        }
-    }
-    
-    // MARK: teardown
     
     func stopRunning() {
-        if let session = captureSession {
-            session.stopRunning()
-            captureDevice = nil
-            captureSession = nil
-            previewLayer = nil
-            stillImageOutput = nil
-            metadataOutput = nil
-        }
+        camera?.stopCapture()
+        camera?.removeAllTargets()
     }
     
-    // MARK: layout
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if let p = previewLayer {
-            p.frame = bounds
+    var camera: GPUImageStillCamera?
+    
+    let outputView = GPUImageView()
+    let rgbAdjust = GPUImageRGBFilter()
+    let vignette = GPUImageVignetteFilter()
+    let blur = GPUImageZoomBlurFilter()
+    let mix = GPUImageAlphaBlendFilter()
+    
+    var spookiness: Float = 0 {
+        didSet {
+            let s = CGFloat(spookiness)
+            rgbAdjust.red = 1 - s * 0.3
+            rgbAdjust.green = 1 - s * 0.3
+            rgbAdjust.blue = 1 - s * 0.15
+            vignette.vignetteEnd = 1
+            vignette.vignetteStart = 1 - 0.4 * s
+            mix.mix = s * 0.3
         }
     }
-    
-    // MARK: metadata output
-    @IBOutlet var metadataObjectsDelegate: AVCaptureMetadataOutputObjectsDelegate?
 }

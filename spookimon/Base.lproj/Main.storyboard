@@ -90,15 +90,34 @@
         <scene sceneID="vMQ-CH-N5i">
             <objects>
                 <viewController id="CNK-gL-flF" customClass="ARViewController" customModule="spookimon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zhV-pq-Bbj"/>
+                        <viewControllerLayoutGuide type="bottom" id="7FY-MC-zzZ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MCh-Hu-nfF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DRf-dK-08I">
+                                <connections>
+                                    <action selector="updateSpookiness" destination="CNK-gL-flF" eventType="valueChanged" id="fbr-J1-usY"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DRf-dK-08I" firstAttribute="leading" secondItem="MCh-Hu-nfF" secondAttribute="leadingMargin" id="15A-Jp-Dfn"/>
+                            <constraint firstItem="7FY-MC-zzZ" firstAttribute="top" secondItem="DRf-dK-08I" secondAttribute="bottom" constant="12" id="7Cn-zn-Zkp"/>
+                            <constraint firstItem="DRf-dK-08I" firstAttribute="trailing" secondItem="MCh-Hu-nfF" secondAttribute="trailingMargin" id="oBS-as-ySL"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="spookinessSlider" destination="DRf-dK-08I" id="dg5-xN-HTI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGz-7g-Uwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="32"/>
+            <point key="canvasLocation" x="746.25" y="31.690140845070424"/>
         </scene>
     </scenes>
 </document>

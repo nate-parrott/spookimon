@@ -24,12 +24,12 @@ class ARViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(cameraView)
+        view.insertSubview(cameraView, at: 0)
         cameraView.frame = view.bounds
         cameraView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         cameraView.startRunning()
         
-        view.addSubview(sceneView)
+        view.insertSubview(sceneView, at: 1)
         sceneView.frame = view.bounds
         sceneView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         sceneView.scene = scene
@@ -69,6 +69,11 @@ class ARViewController: UIViewController {
         }
     }
 
+    
+    @IBOutlet var spookinessSlider: UISlider?
+    @IBAction func updateSpookiness() {
+        cameraView.spookiness = spookinessSlider?.value ?? 0
+    }
 }
 
 extension CMQuaternion {
