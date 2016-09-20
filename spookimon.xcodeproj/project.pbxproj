@@ -8,20 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		5F59CC661D90BB2D005E8384 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC651D90BB2D005E8384 /* AppDelegate.swift */; };
-		5F59CC681D90BB2D005E8384 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC671D90BB2D005E8384 /* ViewController.swift */; };
 		5F59CC6B1D90BB2D005E8384 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC691D90BB2D005E8384 /* Main.storyboard */; };
 		5F59CC6D1D90BB2D005E8384 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC6C1D90BB2D005E8384 /* Assets.xcassets */; };
 		5F59CC701D90BB2D005E8384 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC6E1D90BB2D005E8384 /* LaunchScreen.storyboard */; };
+		5F59CC7A1D90BC11005E8384 /* PerlinNoise.c in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC781D90BC11005E8384 /* PerlinNoise.c */; };
+		5F59CC7E1D90BC77005E8384 /* Morality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC7D1D90BC77005E8384 /* Morality.swift */; };
+		5F59CC801D90BFB8005E8384 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC7F1D90BFB8005E8384 /* GoogleService-Info.plist */; };
+		5F59CC821D90C17D005E8384 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC811D90C17D005E8384 /* CameraView.swift */; };
+		5F59CC881D90C1AB005E8384 /* LandLord_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC831D90C1AB005E8384 /* LandLord_diffuse.png */; };
+		5F59CC891D90C1AB005E8384 /* landlord_triangulated.dae in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC841D90C1AB005E8384 /* landlord_triangulated.dae */; };
+		5F59CC8A1D90C1AB005E8384 /* murray_skin_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC851D90C1AB005E8384 /* murray_skin_d.png */; };
+		5F59CC8B1D90C1AB005E8384 /* Murray.obj in Resources */ = {isa = PBXBuildFile; fileRef = 5F59CC861D90C1AB005E8384 /* Murray.obj */; };
+		5F59CC8C1D90C1AB005E8384 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC871D90C1AB005E8384 /* ARViewController.swift */; };
+		5F59CC8E1D90C480005E8384 /* SpookyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */; };
+		5F59CC901D90DED2005E8384 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC8F1D90DED2005E8384 /* MapViewController.swift */; };
+		B5830A991BB7394F2DE4F18E /* Pods_spookimon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6319113C9353BC99E25A4E /* Pods_spookimon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5F59CC621D90BB2D005E8384 /* spookimon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spookimon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F59CC651D90BB2D005E8384 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5F59CC671D90BB2D005E8384 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F59CC6A1D90BB2D005E8384 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F59CC6C1D90BB2D005E8384 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F59CC6F1D90BB2D005E8384 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F59CC711D90BB2D005E8384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F59CC771D90BC10005E8384 /* spookimon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "spookimon-Bridging-Header.h"; sourceTree = "<group>"; };
+		5F59CC781D90BC11005E8384 /* PerlinNoise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PerlinNoise.c; sourceTree = "<group>"; };
+		5F59CC791D90BC11005E8384 /* PerlinNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
+		5F59CC7D1D90BC77005E8384 /* Morality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Morality.swift; sourceTree = "<group>"; };
+		5F59CC7F1D90BFB8005E8384 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5F59CC811D90C17D005E8384 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		5F59CC831D90C1AB005E8384 /* LandLord_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandLord_diffuse.png; sourceTree = "<group>"; };
+		5F59CC841D90C1AB005E8384 /* landlord_triangulated.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = landlord_triangulated.dae; sourceTree = "<group>"; };
+		5F59CC851D90C1AB005E8384 /* murray_skin_d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = murray_skin_d.png; sourceTree = "<group>"; };
+		5F59CC861D90C1AB005E8384 /* Murray.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Murray.obj; sourceTree = "<group>"; };
+		5F59CC871D90C1AB005E8384 /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpookyMapView.swift; sourceTree = "<group>"; };
+		5F59CC8F1D90DED2005E8384 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6F6319113C9353BC99E25A4E /* Pods_spookimon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spookimon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF551429B479D2FD446D7E29 /* Pods-spookimon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spookimon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-spookimon/Pods-spookimon.debug.xcconfig"; sourceTree = "<group>"; };
+		FBD71EE6E6F2C0ADEDC25EC9 /* Pods-spookimon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spookimon.release.xcconfig"; path = "Pods/Target Support Files/Pods-spookimon/Pods-spookimon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5830A991BB7394F2DE4F18E /* Pods_spookimon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43134B81981B175810DD0DEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F6319113C9353BC99E25A4E /* Pods_spookimon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5F59CC591D90BB2D005E8384 = {
 			isa = PBXGroup;
 			children = (
 				5F59CC641D90BB2D005E8384 /* spookimon */,
 				5F59CC631D90BB2D005E8384 /* Products */,
+				D2F4EC7CBDF4EE5A49F00A53 /* Pods */,
+				43134B81981B175810DD0DEF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +92,34 @@
 			isa = PBXGroup;
 			children = (
 				5F59CC651D90BB2D005E8384 /* AppDelegate.swift */,
-				5F59CC671D90BB2D005E8384 /* ViewController.swift */,
+				5F59CC7D1D90BC77005E8384 /* Morality.swift */,
+				5F59CC811D90C17D005E8384 /* CameraView.swift */,
+				5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */,
+				5F59CC831D90C1AB005E8384 /* LandLord_diffuse.png */,
+				5F59CC841D90C1AB005E8384 /* landlord_triangulated.dae */,
+				5F59CC851D90C1AB005E8384 /* murray_skin_d.png */,
+				5F59CC861D90C1AB005E8384 /* Murray.obj */,
+				5F59CC871D90C1AB005E8384 /* ARViewController.swift */,
+				5F59CC791D90BC11005E8384 /* PerlinNoise.h */,
+				5F59CC781D90BC11005E8384 /* PerlinNoise.c */,
+				5F59CC8F1D90DED2005E8384 /* MapViewController.swift */,
 				5F59CC691D90BB2D005E8384 /* Main.storyboard */,
+				5F59CC7F1D90BFB8005E8384 /* GoogleService-Info.plist */,
 				5F59CC6C1D90BB2D005E8384 /* Assets.xcassets */,
 				5F59CC6E1D90BB2D005E8384 /* LaunchScreen.storyboard */,
 				5F59CC711D90BB2D005E8384 /* Info.plist */,
+				5F59CC771D90BC10005E8384 /* spookimon-Bridging-Header.h */,
 			);
 			path = spookimon;
+			sourceTree = "<group>";
+		};
+		D2F4EC7CBDF4EE5A49F00A53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF551429B479D2FD446D7E29 /* Pods-spookimon.debug.xcconfig */,
+				FBD71EE6E6F2C0ADEDC25EC9 /* Pods-spookimon.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +129,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F59CC741D90BB2D005E8384 /* Build configuration list for PBXNativeTarget "spookimon" */;
 			buildPhases = (
+				778FE419FAD092983715F24E /* Check Pods Manifest.lock */,
 				5F59CC5E1D90BB2D005E8384 /* Sources */,
 				5F59CC5F1D90BB2D005E8384 /* Frameworks */,
 				5F59CC601D90BB2D005E8384 /* Resources */,
+				083A9A757F16846C76E474E0 /* Embed Pods Frameworks */,
+				3DC980B181728A6CA0132E2F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -97,6 +158,7 @@
 					5F59CC611D90BB2D005E8384 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = VPN8ZW6EAC;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -125,20 +187,78 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F59CC701D90BB2D005E8384 /* LaunchScreen.storyboard in Resources */,
+				5F59CC801D90BFB8005E8384 /* GoogleService-Info.plist in Resources */,
+				5F59CC8A1D90C1AB005E8384 /* murray_skin_d.png in Resources */,
+				5F59CC8B1D90C1AB005E8384 /* Murray.obj in Resources */,
+				5F59CC891D90C1AB005E8384 /* landlord_triangulated.dae in Resources */,
 				5F59CC6D1D90BB2D005E8384 /* Assets.xcassets in Resources */,
+				5F59CC881D90C1AB005E8384 /* LandLord_diffuse.png in Resources */,
 				5F59CC6B1D90BB2D005E8384 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		083A9A757F16846C76E474E0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-spookimon/Pods-spookimon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DC980B181728A6CA0132E2F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-spookimon/Pods-spookimon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		778FE419FAD092983715F24E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5F59CC5E1D90BB2D005E8384 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F59CC681D90BB2D005E8384 /* ViewController.swift in Sources */,
+				5F59CC8E1D90C480005E8384 /* SpookyMapView.swift in Sources */,
+				5F59CC8C1D90C1AB005E8384 /* ARViewController.swift in Sources */,
+				5F59CC7A1D90BC11005E8384 /* PerlinNoise.c in Sources */,
+				5F59CC7E1D90BC77005E8384 /* Morality.swift in Sources */,
+				5F59CC821D90C17D005E8384 /* CameraView.swift in Sources */,
 				5F59CC661D90BB2D005E8384 /* AppDelegate.swift in Sources */,
+				5F59CC901D90DED2005E8384 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,26 +379,33 @@
 		};
 		5F59CC751D90BB2D005E8384 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF551429B479D2FD446D7E29 /* Pods-spookimon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = VPN8ZW6EAC;
 				INFOPLIST_FILE = spookimon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nateparrott.spookimon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "spookimon/spookimon-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5F59CC761D90BB2D005E8384 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBD71EE6E6F2C0ADEDC25EC9 /* Pods-spookimon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = VPN8ZW6EAC;
 				INFOPLIST_FILE = spookimon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nateparrott.spookimon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "spookimon/spookimon-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -302,6 +429,7 @@
 				5F59CC761D90BB2D005E8384 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
