@@ -3,3 +3,4 @@
 //
 
 #import "PerlinNoise.h"
+#import "GPUImageFilter+Program.h"

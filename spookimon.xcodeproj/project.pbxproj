@@ -22,6 +22,9 @@
 		5F59CC8C1D90C1AB005E8384 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC871D90C1AB005E8384 /* ARViewController.swift */; };
 		5F59CC8E1D90C480005E8384 /* SpookyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */; };
 		5F59CC901D90DED2005E8384 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC8F1D90DED2005E8384 /* MapViewController.swift */; };
+		5FEBF72F1D92164C00DA6792 /* Spooky.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5FEBF72E1D92164C00DA6792 /* Spooky.fsh */; };
+		5FEBF7331D92171C00DA6792 /* SpookyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */; };
+		5FEBF7361D92173300DA6792 /* GPUImageFilter+Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF7351D92173300DA6792 /* GPUImageFilter+Program.m */; };
 		B5830A991BB7394F2DE4F18E /* Pods_spookimon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6319113C9353BC99E25A4E /* Pods_spookimon.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,10 @@
 		5F59CC871D90C1AB005E8384 /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpookyMapView.swift; sourceTree = "<group>"; };
 		5F59CC8F1D90DED2005E8384 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5FEBF72E1D92164C00DA6792 /* Spooky.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Spooky.fsh; sourceTree = "<group>"; };
+		5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpookyFilter.swift; sourceTree = "<group>"; };
+		5FEBF7341D92173300DA6792 /* GPUImageFilter+Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPUImageFilter+Program.h"; sourceTree = "<group>"; };
+		5FEBF7351D92173300DA6792 /* GPUImageFilter+Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GPUImageFilter+Program.m"; sourceTree = "<group>"; };
 		6F6319113C9353BC99E25A4E /* Pods_spookimon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spookimon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF551429B479D2FD446D7E29 /* Pods-spookimon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spookimon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-spookimon/Pods-spookimon.debug.xcconfig"; sourceTree = "<group>"; };
 		FBD71EE6E6F2C0ADEDC25EC9 /* Pods-spookimon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spookimon.release.xcconfig"; path = "Pods/Target Support Files/Pods-spookimon/Pods-spookimon.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +102,10 @@
 				5F59CC7D1D90BC77005E8384 /* Morality.swift */,
 				5F59CC811D90C17D005E8384 /* CameraView.swift */,
 				5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */,
+				5FEBF72E1D92164C00DA6792 /* Spooky.fsh */,
+				5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */,
+				5FEBF7341D92173300DA6792 /* GPUImageFilter+Program.h */,
+				5FEBF7351D92173300DA6792 /* GPUImageFilter+Program.m */,
 				5F59CC831D90C1AB005E8384 /* LandLord_diffuse.png */,
 				5F59CC841D90C1AB005E8384 /* landlord_triangulated.dae */,
 				5F59CC851D90C1AB005E8384 /* murray_skin_d.png */,
@@ -194,6 +205,7 @@
 				5F59CC6D1D90BB2D005E8384 /* Assets.xcassets in Resources */,
 				5F59CC881D90C1AB005E8384 /* LandLord_diffuse.png in Resources */,
 				5F59CC6B1D90BB2D005E8384 /* Main.storyboard in Resources */,
+				5FEBF72F1D92164C00DA6792 /* Spooky.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,10 +264,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FEBF7331D92171C00DA6792 /* SpookyFilter.swift in Sources */,
 				5F59CC8E1D90C480005E8384 /* SpookyMapView.swift in Sources */,
 				5F59CC8C1D90C1AB005E8384 /* ARViewController.swift in Sources */,
 				5F59CC7A1D90BC11005E8384 /* PerlinNoise.c in Sources */,
 				5F59CC7E1D90BC77005E8384 /* Morality.swift in Sources */,
+				5FEBF7361D92173300DA6792 /* GPUImageFilter+Program.m in Sources */,
 				5F59CC821D90C17D005E8384 /* CameraView.swift in Sources */,
 				5F59CC661D90BB2D005E8384 /* AppDelegate.swift in Sources */,
 				5F59CC901D90DED2005E8384 /* MapViewController.swift in Sources */,
