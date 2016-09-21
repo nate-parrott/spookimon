@@ -23,6 +23,8 @@
 		5F59CC8E1D90C480005E8384 /* SpookyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */; };
 		5F59CC901D90DED2005E8384 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59CC8F1D90DED2005E8384 /* MapViewController.swift */; };
 		5FA478CF1D924F9800EBA94A /* CurrentLocationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA478CE1D924F9800EBA94A /* CurrentLocationObserver.swift */; };
+		5FA478D11D93033000EBA94A /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA478D01D93033000EBA94A /* ghost.png */; };
+		5FA478D31D9304BC00EBA94A /* Satanyc Demoniac St.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FA478D21D9304BC00EBA94A /* Satanyc Demoniac St.ttf */; };
 		5FEBF72F1D92164C00DA6792 /* Spooky.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5FEBF72E1D92164C00DA6792 /* Spooky.fsh */; };
 		5FEBF7331D92171C00DA6792 /* SpookyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */; };
 		5FEBF7361D92173300DA6792 /* GPUImageFilter+Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF7351D92173300DA6792 /* GPUImageFilter+Program.m */; };
@@ -50,6 +52,8 @@
 		5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpookyMapView.swift; sourceTree = "<group>"; };
 		5F59CC8F1D90DED2005E8384 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5FA478CE1D924F9800EBA94A /* CurrentLocationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationObserver.swift; sourceTree = "<group>"; };
+		5FA478D01D93033000EBA94A /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
+		5FA478D21D9304BC00EBA94A /* Satanyc Demoniac St.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Satanyc Demoniac St.ttf"; sourceTree = "<group>"; };
 		5FEBF72E1D92164C00DA6792 /* Spooky.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Spooky.fsh; sourceTree = "<group>"; };
 		5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpookyFilter.swift; sourceTree = "<group>"; };
 		5FEBF7341D92173300DA6792 /* GPUImageFilter+Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPUImageFilter+Program.h"; sourceTree = "<group>"; };
@@ -114,10 +118,12 @@
 				5F59CC831D90C1AB005E8384 /* LandLord_diffuse.png */,
 				5F59CC841D90C1AB005E8384 /* landlord_triangulated.dae */,
 				5F59CC851D90C1AB005E8384 /* murray_skin_d.png */,
+				5FA478D01D93033000EBA94A /* ghost.png */,
 				5F59CC861D90C1AB005E8384 /* Murray.obj */,
 				5F59CC791D90BC11005E8384 /* PerlinNoise.h */,
 				5F59CC781D90BC11005E8384 /* PerlinNoise.c */,
 				5F59CC691D90BB2D005E8384 /* Main.storyboard */,
+				5FA478D21D9304BC00EBA94A /* Satanyc Demoniac St.ttf */,
 				5F59CC7F1D90BFB8005E8384 /* GoogleService-Info.plist */,
 				5F59CC6C1D90BB2D005E8384 /* Assets.xcassets */,
 				5F59CC6E1D90BB2D005E8384 /* LaunchScreen.storyboard */,
@@ -201,6 +207,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F59CC701D90BB2D005E8384 /* LaunchScreen.storyboard in Resources */,
+				5FA478D31D9304BC00EBA94A /* Satanyc Demoniac St.ttf in Resources */,
+				5FA478D11D93033000EBA94A /* ghost.png in Resources */,
 				5F59CC801D90BFB8005E8384 /* GoogleService-Info.plist in Resources */,
 				5F59CC8A1D90C1AB005E8384 /* murray_skin_d.png in Resources */,
 				5F59CC8B1D90C1AB005E8384 /* Murray.obj in Resources */,

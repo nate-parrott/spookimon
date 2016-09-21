@@ -20,7 +20,7 @@ class API {
     let firebase: FIRDatabaseReference
 }
 
-struct Cell: Hashable {
+struct Cell: Hashable, CustomStringConvertible {
     let lat: Int
     let lng: Int
     static let latDelta: Double = 0.000153 * 4
@@ -58,13 +58,18 @@ struct Cell: Hashable {
             return "\(lat)+\(lng)"
         }
     }
+    var description: String {
+        get {
+            return "<Cell: \(lat), \(lng)>"
+        }
+    }
 }
 
 func ==(l: Cell, r: Cell) -> Bool {
     return l.lat == r.lat && l.lng == r.lng
 }
 
-class ZoneObservation {
+class ZoneObservation : CustomStringConvertible {
     init(minCell: Cell, maxCell: Cell) {
         self.minCell = minCell
         self.maxCell = maxCell
@@ -82,9 +87,10 @@ class ZoneObservation {
         print("Watching buckets \(buckets)")
         let fbRoot = API.Shared.firebase.child("buckets")
         databaseReferences = buckets.map({ fbRoot.child($0) })
+        var subscriptionHandles = [UInt]()
         for ref in databaseReferences {
             let key = ref.key
-            ref.observe(.value, andPreviousSiblingKeyWith: { [weak self] (snapshot, _) in
+            let handle = ref.observe(.value, andPreviousSiblingKeyWith: { [weak self] (snapshot, _) in
                 if let val = snapshot.value as? [String: AnyObject] {
                     self?.buckets[key] = val
                 } else {
@@ -92,30 +98,41 @@ class ZoneObservation {
                 }
                 if let cb = self?.onUpdate { cb() }
                 }, withCancel: nil)
+            subscriptionHandles.append(handle)
         }
+        self.dbSubscriptionHandles = subscriptionHandles
     }
     
     let minCell: Cell
     let maxCell: Cell
     
     let databaseReferences: [FIRDatabaseReference]
+    var dbSubscriptionHandles: [UInt]!
     
     var buckets = [String: [String: AnyObject]]()
     
     var onUpdate: (() -> ())?
     
+    
     deinit {
-        for ref in databaseReferences {
-            ref.removeAllObservers()
+        for (ref, handle) in zip(databaseReferences, dbSubscriptionHandles) {
+            // ref.removeAllObservers()
+            ref.removeObserver(withHandle: handle)
         }
     }
     
     func contains(min: Cell, max: Cell) -> Bool {
         return min.lat >= self.minCell.lat && min.lng >= self.minCell.lng && max.lat <= self.maxCell.lat && max.lng <= self.maxCell.lng
     }
+    
+    var description: String {
+        get {
+            return "<ZoneObservation: \(minCell) – \(maxCell)>"
+        }
+    }
 }
 
-class CellHandle {
+class CellHandle: CustomStringConvertible {
     init(observation: ZoneObservation, cell: Cell) {
         self.observation = observation
         self.cell = cell
@@ -150,6 +167,12 @@ class CellHandle {
         }
         set(val) {
             cellDataPath.child("spookiness").setValue(val)
+        }
+    }
+    
+    var description: String {
+        get {
+            return "<CellHandle: \(cell)>"
         }
     }
 }

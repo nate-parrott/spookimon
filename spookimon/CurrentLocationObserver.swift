@@ -35,6 +35,7 @@ class CurrentLocationObserver: NSObject, CLLocationManagerDelegate {
                 }
                 if let o = observer, let c = cell {
                     cellHandle = CellHandle(observation: o, cell: c)
+                    print("Handle: \(cellHandle)")
                 }
                 if let cb = onUpdate { cb() }
             }
@@ -42,6 +43,7 @@ class CurrentLocationObserver: NSObject, CLLocationManagerDelegate {
     }
     var observer: ZoneObservation? {
         didSet(old) {
+            print("Observer: \(observer)")
             old?.onUpdate = nil
             observer?.onUpdate = {
                 [weak self] in

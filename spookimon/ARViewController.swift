@@ -49,6 +49,15 @@ class ARViewController: UIViewController {
         // murray.scale = SCNVector3Make(0.06, 0.06, 0.06)
         scene.rootNode.addChildNode(asset)
         
+        let plane = SCNPlane(width: 1, height: 1)
+        let ghost = SCNNode(geometry: plane)
+        let ghostMtl = SCNMaterial()
+        ghostMtl.diffuse.contents = UIImage(named: "ghost")!
+        plane.materials = [ghostMtl]
+        ghost.position = SCNVector3Make(2, 3, -2)
+        ghostMtl.isDoubleSided = true
+        scene.rootNode.addChildNode(ghost)
+        
         let sun = SCNLight()
         sun.type = SCNLight.LightType.omni
         sun.color = UIColor(white: 1, alpha: 0.2)
