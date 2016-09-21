@@ -89,7 +89,13 @@ class SpookyMapView: UIView, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let cellOverlay = overlay as! CellOverlay
         let renderer = MKPolygonRenderer(polygon: cellOverlay.polygon)
-        let spookiness = (observer?.spookinessForCell(cell: cellOverlay.cell) ?? 0) / 255.0
+        var spookiness: Float
+        if let o = observer {
+            let handle = CellHandle(observation: o, cell: cellOverlay.cell)
+            spookiness = handle.spookiness
+        } else {
+            spookiness = 0
+        }
         renderer.fillColor = UIColor(hue: 1, saturation: 1, brightness: 1, alpha: CGFloat(spookiness))
         return renderer
     }

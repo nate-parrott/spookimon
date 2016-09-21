@@ -10,8 +10,8 @@ import Foundation
 import CoreLocation
 import Firebase
 
-class Morality {
-    static let Shared = Morality()
+class API {
+    static let Shared = API()
     // init. good and evil
     init() {
         FIRApp.configure()
@@ -80,7 +80,7 @@ class ZoneObservation {
             print("minCell's lat or lng isn't less than maxCell's")
         }
         print("Watching buckets \(buckets)")
-        let fbRoot = Morality.Shared.firebase.child("buckets")
+        let fbRoot = API.Shared.firebase.child("buckets")
         databaseReferences = buckets.map({ fbRoot.child($0) })
         for ref in databaseReferences {
             let key = ref.key
@@ -90,6 +90,7 @@ class ZoneObservation {
                 } else {
                     self?.buckets.removeValue(forKey: key)
                 }
+                if let cb = self?.onUpdate { cb() }
                 }, withCancel: nil)
         }
     }
@@ -112,11 +113,44 @@ class ZoneObservation {
     func contains(min: Cell, max: Cell) -> Bool {
         return min.lat >= self.minCell.lat && min.lng >= self.minCell.lng && max.lat <= self.maxCell.lat && max.lng <= self.maxCell.lng
     }
+}
+
+class CellHandle {
+    init(observation: ZoneObservation, cell: Cell) {
+        self.observation = observation
+        self.cell = cell
+    }
+    let observation: ZoneObservation
+    let cell: Cell
     
-    func spookinessForCell(cell: Cell) -> Float {
-        if let c = buckets[cell.bucket], let data = c[cell.key] as? [String: AnyObject], let spookiness = data["spookiness"] as? Float {
-            return spookiness
+    var cellData: [String: AnyObject] {
+        get {
+            if let bucket = observation.buckets[cell.bucket], let data = bucket[cell.key] as? [String: AnyObject] {
+                return data
+            } else {
+                return [String: AnyObject]()
+            }
         }
-        return noise2d(Float(cell.lat) / 2, Float(cell.lng) / 2)
+    }
+    
+    var cellDataPath: FIRDatabaseReference {
+        get {
+            return API.Shared.firebase.child("buckets").child(cell.bucket).child(cell.key)
+        }
+    }
+    
+    var spookiness: Float {
+        get {
+            if let val = cellData["spookiness"] as? Float {
+                return val
+            } else {
+                let p = pow(noise2d(Float(cell.lat) / 2, Float(cell.lng) / 2) / 255.0, 2)
+                return p
+            }
+        }
+        set(val) {
+            cellDataPath.child("spookiness").setValue(val)
+        }
     }
 }
+

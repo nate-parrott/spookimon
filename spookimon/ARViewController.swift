@@ -19,6 +19,8 @@ class ARViewController: UIViewController {
     let cameraNode = SCNNode()
     let motionManager = CMMotionManager()
     let cameraView = CameraView()
+    
+    let curLoc = CurrentLocationObserver()
     // -z is the floor
     
     override func viewDidLoad() {
@@ -67,12 +69,27 @@ class ARViewController: UIViewController {
                 self.cameraNode.orientation = motion.attitude.quaternion.scnQuaternion
             }
         }
+        
+        curLoc.onUpdate = {
+            [weak self] in
+            self?.settingUpdated()
+        }
+        settingUpdated()
     }
 
     
     @IBOutlet var spookinessSlider: UISlider?
     @IBAction func updateSpookiness() {
-        cameraView.spookiness = spookinessSlider?.value ?? 0
+        if let handle = curLoc.cellHandle {
+            handle.spookiness = spookinessSlider?.value ?? 0
+        }
+    }
+    
+    func settingUpdated() {
+        if let handle = curLoc.cellHandle {
+            spookinessSlider?.value = handle.spookiness
+            cameraView.spookiness = handle.spookiness
+        }
     }
 }
 
