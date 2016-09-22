@@ -4,3 +4,4 @@
 
 #import "PerlinNoise.h"
 #import "GPUImageFilter+Program.h"
+#import "GPUImageSceneKitOutput.h"

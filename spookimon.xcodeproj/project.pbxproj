@@ -25,6 +25,7 @@
 		5FA478CF1D924F9800EBA94A /* CurrentLocationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA478CE1D924F9800EBA94A /* CurrentLocationObserver.swift */; };
 		5FA478D11D93033000EBA94A /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA478D01D93033000EBA94A /* ghost.png */; };
 		5FA478D31D9304BC00EBA94A /* Satanyc Demoniac St.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FA478D21D9304BC00EBA94A /* Satanyc Demoniac St.ttf */; };
+		5FA478D61D93950300EBA94A /* GPUImageSceneKitOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA478D51D93950300EBA94A /* GPUImageSceneKitOutput.m */; };
 		5FEBF72F1D92164C00DA6792 /* Spooky.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 5FEBF72E1D92164C00DA6792 /* Spooky.fsh */; };
 		5FEBF7331D92171C00DA6792 /* SpookyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */; };
 		5FEBF7361D92173300DA6792 /* GPUImageFilter+Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBF7351D92173300DA6792 /* GPUImageFilter+Program.m */; };
@@ -54,6 +55,8 @@
 		5FA478CE1D924F9800EBA94A /* CurrentLocationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationObserver.swift; sourceTree = "<group>"; };
 		5FA478D01D93033000EBA94A /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
 		5FA478D21D9304BC00EBA94A /* Satanyc Demoniac St.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Satanyc Demoniac St.ttf"; sourceTree = "<group>"; };
+		5FA478D41D93950300EBA94A /* GPUImageSceneKitOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageSceneKitOutput.h; sourceTree = "<group>"; };
+		5FA478D51D93950300EBA94A /* GPUImageSceneKitOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageSceneKitOutput.m; sourceTree = "<group>"; };
 		5FEBF72E1D92164C00DA6792 /* Spooky.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Spooky.fsh; sourceTree = "<group>"; };
 		5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpookyFilter.swift; sourceTree = "<group>"; };
 		5FEBF7341D92173300DA6792 /* GPUImageFilter+Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPUImageFilter+Program.h"; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				5F59CC8F1D90DED2005E8384 /* MapViewController.swift */,
 				5F59CC811D90C17D005E8384 /* CameraView.swift */,
 				5F59CC8D1D90C480005E8384 /* SpookyMapView.swift */,
+				5FA478D41D93950300EBA94A /* GPUImageSceneKitOutput.h */,
+				5FA478D51D93950300EBA94A /* GPUImageSceneKitOutput.m */,
 				5FA478CE1D924F9800EBA94A /* CurrentLocationObserver.swift */,
 				5FEBF72E1D92164C00DA6792 /* Spooky.fsh */,
 				5FEBF7321D92171C00DA6792 /* SpookyFilter.swift */,
@@ -281,6 +286,7 @@
 				5F59CC7A1D90BC11005E8384 /* PerlinNoise.c in Sources */,
 				5F59CC7E1D90BC77005E8384 /* Data.swift in Sources */,
 				5FEBF7361D92173300DA6792 /* GPUImageFilter+Program.m in Sources */,
+				5FA478D61D93950300EBA94A /* GPUImageSceneKitOutput.m in Sources */,
 				5FA478CF1D924F9800EBA94A /* CurrentLocationObserver.swift in Sources */,
 				5F59CC821D90C17D005E8384 /* CameraView.swift in Sources */,
 				5F59CC661D90BB2D005E8384 /* AppDelegate.swift in Sources */,

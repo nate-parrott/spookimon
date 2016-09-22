@@ -20,7 +20,6 @@ class ARViewController: UIViewController {
     let motionManager = CMMotionManager()
     let cameraView = CameraView()
     let renderer = SCNRenderer(context: GPUImageContext.sharedImageProcessing().context, options: nil)
-    let framebuffer = GPUImageFramebuffer(size: UIScreen.main.bounds.size)
     var displayLink: CADisplayLink!
     
     let curLoc = CurrentLocationObserver()
@@ -42,9 +41,7 @@ class ARViewController: UIViewController {
         
         cameraNode.camera = camera
         scene.rootNode.addChildNode(cameraNode)
-        
-        cameraView.buildPipelineWithARTexture(texture: framebuffer!.texture, size: framebuffer!.size)
-        
+                
         // let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0)
         let assetURL = Bundle.main.url(forResource: "landlord_triangulated", withExtension: "dae")!
         let asset = try! SCNScene(url: assetURL, options: nil).rootNode.childNodes[0]
@@ -117,10 +114,15 @@ class ARViewController: UIViewController {
     func render() {
         time += displayLink.duration
         runAsynchronouslyOnContextQueue(GPUImageContext.sharedImageProcessing()) {
-            GPUImageContext.useImageProcessingContext()
-            self.framebuffer!.activate()
-            self.renderer.render(atTime: self.time)
+            self.cameraView.arTextureInput.render(self.renderer, size: self.view.bounds.size, time: self.time)
         }
+        // cameraView.arTextureInput.render(renderer, size: view.bounds.size, time: time)
+//        runAsynchronouslyOnContextQueue(GPUImageContext.sharedImageProcessing()) {
+//            GPUImageContext.useImageProcessingContext()
+//            self.cameraView.arTextureInput.framebufferForOutput.activate()
+//            self.renderer.render(atTime: self.time)
+//            self.cameraView.arTextureInput.notifyTargetsAboutNewOutputTexture()
+//        }
     }
 
     
