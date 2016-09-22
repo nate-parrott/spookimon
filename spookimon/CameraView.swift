@@ -19,13 +19,18 @@ class CameraView: UIView {
             outputView.frame = bounds
             outputView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             outputView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill
-            filter.addTarget(outputView)
             spookiness = 1
         }
         running = (newWindow != nil)
     }
-    
     var setupYet = false
+    
+    func buildPipelineWithARTexture(texture: GLuint, size: CGSize) {
+        arTextureInput = GPUImageTextureInput(texture: texture, size: size)
+        arTextureInput.addTarget(mix, atTextureLocation: 1)
+        mix.addTarget(filter)
+        filter.addTarget(outputView)
+    }
     
     var running: Bool = false {
         willSet(newVal) {
@@ -42,7 +47,7 @@ class CameraView: UIView {
     func startRunning() {
         camera = GPUImageStillCamera(sessionPreset: AVCaptureSessionPresetMedium, cameraPosition: .back)
         camera!.startCapture()
-        camera!.addTarget(filter)
+        camera!.addTarget(mix, atTextureLocation: 0)
         camera!.outputImageOrientation = .portrait
     }
     
@@ -55,6 +60,8 @@ class CameraView: UIView {
     
     let outputView = GPUImageView()
     let filter = SpookyFilter(fragmentShaderFromFile: "Spooky")!
+    let mix = GPUImageAlphaBlendFilter()
+    var arTextureInput: GPUImageTextureInput!
     
     var spookiness: Float = 0 {
         didSet {

@@ -10,15 +10,18 @@ import UIKit
 import SceneKit
 import CoreMotion
 import ModelIO
+import GPUImage
 
 class ARViewController: UIViewController {
 
-    let sceneView = SCNView()
     let scene = SCNScene()
     let camera = SCNCamera()
     let cameraNode = SCNNode()
     let motionManager = CMMotionManager()
     let cameraView = CameraView()
+    let renderer = SCNRenderer(context: GPUImageContext.sharedImageProcessing().context, options: nil)
+    let framebuffer = GPUImageFramebuffer(size: UIScreen.main.bounds.size)
+    var displayLink: CADisplayLink!
     
     let curLoc = CurrentLocationObserver()
     // -z is the floor
@@ -28,25 +31,24 @@ class ARViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let motionEnabled = false
+        
         view.insertSubview(cameraView, at: 0)
         cameraView.frame = view.bounds
         cameraView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         cameraView.startRunning()
         
-        view.insertSubview(sceneView, at: 1)
-        sceneView.frame = view.bounds
-        sceneView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        sceneView.scene = scene
-        sceneView.backgroundColor = UIColor.clear
-        view.backgroundColor = UIColor.red
+        renderer.scene = scene
         
         cameraNode.camera = camera
         scene.rootNode.addChildNode(cameraNode)
         
+        cameraView.buildPipelineWithARTexture(texture: framebuffer!.texture, size: framebuffer!.size)
+        
         // let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0)
         let assetURL = Bundle.main.url(forResource: "landlord_triangulated", withExtension: "dae")!
         let asset = try! SCNScene(url: assetURL, options: nil).rootNode.childNodes[0]
-        asset.position = SCNVector3Make(0, 5, 0)
+        asset.position = motionEnabled ? SCNVector3Make(0, 5, 0) : SCNVector3Make(0,0,-5)
         // murray.rotation = SCNVector4Make(1, 1, 1, Float(M_PI) / 3)
         // murray.scale = SCNVector3Make(0.06, 0.06, 0.06)
         scene.rootNode.addChildNode(asset)
@@ -96,7 +98,7 @@ class ARViewController: UIViewController {
         scene.rootNode.addChildNode(ambientNode)
         
         motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { (motionOpt, _) in
-            if let motion = motionOpt {
+            if let motion = motionOpt, motionEnabled {
                 self.cameraNode.orientation = motion.attitude.quaternion.scnQuaternion
             }
         }
@@ -106,6 +108,19 @@ class ARViewController: UIViewController {
             self?.settingUpdated()
         }
         settingUpdated()
+        
+        displayLink = CADisplayLink(target: self, selector: #selector(ARViewController.render))
+        displayLink.add(to: RunLoop.main, forMode: .commonModes)
+    }
+    
+    var time: CFTimeInterval = 0
+    func render() {
+        time += displayLink.duration
+        runAsynchronouslyOnContextQueue(GPUImageContext.sharedImageProcessing()) {
+            GPUImageContext.useImageProcessingContext()
+            self.framebuffer!.activate()
+            self.renderer.render(atTime: self.time)
+        }
     }
 
     
