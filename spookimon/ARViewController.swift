@@ -23,6 +23,8 @@ class ARViewController: UIViewController {
     let curLoc = CurrentLocationObserver()
     // -z is the floor
     
+    var billboards = [SCNNode]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,19 +46,39 @@ class ARViewController: UIViewController {
         // let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0)
         let assetURL = Bundle.main.url(forResource: "landlord_triangulated", withExtension: "dae")!
         let asset = try! SCNScene(url: assetURL, options: nil).rootNode.childNodes[0]
-        asset.position = SCNVector3Make(0, 5, -2)
+        asset.position = SCNVector3Make(0, 5, 0)
         // murray.rotation = SCNVector4Make(1, 1, 1, Float(M_PI) / 3)
         // murray.scale = SCNVector3Make(0.06, 0.06, 0.06)
         scene.rootNode.addChildNode(asset)
         
         let plane = SCNPlane(width: 1, height: 1)
-        let ghost = SCNNode(geometry: plane)
+        let ghostChild = SCNNode(geometry: plane)
+        let ghost = SCNNode()
+        billboards.append(ghostChild)
+        ghost.addChildNode(ghostChild)
         let ghostMtl = SCNMaterial()
         ghostMtl.diffuse.contents = UIImage(named: "ghost")!
         plane.materials = [ghostMtl]
-        ghost.position = SCNVector3Make(2, 3, -2)
+        let position = SCNVector3Make(-4, 2.5, 0)
+        let pi = Float(M_PI)
+        let angle: Float = pi/2*0 - atan2(position.y, position.x)
+        // SCNMatrix4MakeRotation(1, 0, 0, pi / 2)
+        ghost.transform = SCNMatrix4Translate(
+            SCNMatrix4Rotate(
+                SCNMatrix4MakeRotation(pi / 2, 1, 0, 0),
+                angle, 0, 0, 1),
+            position.x, position.y, position.z)
+        // ghost.rotation = SCNVector4Make(1, 0, 0, pi / 2)
+        // x: left to right
+        // y: front to back
+        // z: down to up
         ghostMtl.isDoubleSided = true
         scene.rootNode.addChildNode(ghost)
+        // let constraint = SCNBillboardConstraint()
+//        constraint.freeAxes = SCNBillboardAxis.Z
+        // let constraint = SCNLookAtConstraint(target: cameraNode)
+        // ghost.constraints = [constraint]
+        // ghost.transform = SCNMatrix4Translate(SCNMatrix4FromGLKMatrix4(GLKMatrix4MakeLookAt(0, 0, 0, -ghost.position.x, -ghost.position.y, -ghost.position.z, 0, 0, 1)), ghost.position.x, ghost.position.y, ghost.position.z)
         
         let sun = SCNLight()
         sun.type = SCNLight.LightType.omni
