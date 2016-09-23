@@ -8,30 +8,73 @@
 
 #import "GPUImageSceneKitOutput.h"
 
+@interface GPUImageSceneKitOutput () {
+    GLuint framebuffer;
+    GLuint depthRenderbuffer;
+    CGSize _size;
+    GLuint texture;
+}
+
+@end
+
 @implementation GPUImageSceneKitOutput
 
-- (void)render:(SCNRenderer *)renderer size:(CGSize)size time:(CFTimeInterval)time {
-    [GPUImageContext useImageProcessingContext];
-    outputFramebuffer = [[GPUImageContext sharedFramebufferCache] fetchFramebufferForSize:size textureOptions:self.outputTextureOptions onlyTexture:YES];
-    [outputFramebuffer activateFramebuffer];
-    glClearColor(0,0,0,0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    // glBindTexture(GL_TEXTURE_2D, [outputFramebuffer texture]);
-    glGetError();
-    [renderer renderAtTime:time];
-    for (id<GPUImageInput> currentTarget in targets)
-    {
-        if (currentTarget != self.targetToIgnoreForUpdates)
-        {
-            NSInteger indexOfObject = [targets indexOfObject:currentTarget];
-            NSInteger textureIndexOfTarget = [[targetTextureIndices objectAtIndex:indexOfObject] integerValue];
-            
-            [currentTarget setInputSize:size atIndex:textureIndexOfTarget];
-            [currentTarget setInputFramebuffer:outputFramebuffer atIndex:textureIndexOfTarget];
-            [currentTarget newFrameReadyAtTime:kCMTimeIndefinite atIndex:textureIndexOfTarget];
+- (instancetype)initWithSize:(CGSize)size {
+    _size = size;
+    runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
+        glGenFramebuffers(1, &framebuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+        
+        // create the texture
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,  size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+        
+        // depth buffer:
+        glGenRenderbuffers(1, &depthRenderbuffer);
+        glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, size.width, size.height);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+        GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER) ;
+        if(status != GL_FRAMEBUFFER_COMPLETE) {
+            NSLog(@"failed to make complete framebuffer object %x", status);
         }
-    }
-    // [outputFramebuffer unlock];
+        
+        glBindTexture(GL_TEXTURE_2D, 0);
+        
+    });
+    self = [super initWithTexture:texture size:size];
+    return self;
+}
+
+- (void)render:(SCNRenderer *)renderer size:(CGSize)size time:(CFTimeInterval)time {
+    runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+        glViewport(0, 0, (int)_size.width, (int)_size.height);
+        glClearColor(255,0,0,0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        // glBindTexture(GL_TEXTURE_2D, [outputFramebuffer texture]);
+        glGetError();
+        [renderer renderAtTime:time];
+        glFlush(); // TODO: can we remove this???
+        [self processTextureWithFrameTime:kCMTimeIndefinite];
+//        for (id<GPUImageInput> currentTarget in targets)
+//        {
+//            NSInteger indexOfObject = [targets indexOfObject:currentTarget];
+//            NSInteger targetTextureIndex = [[targetTextureIndices objectAtIndex:indexOfObject] integerValue];
+//            
+//            [currentTarget setInputSize:_size atIndex:targetTextureIndex];
+//            [currentTarget setInputFramebuffer:outputFramebuffer atIndex:targetTextureIndex];
+//            [currentTarget newFrameReadyAtTime:kCMTimeIndefinite atIndex:targetTextureIndex];
+//        }
+    });
 }
 
 @end

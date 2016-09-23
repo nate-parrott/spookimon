@@ -30,7 +30,7 @@ class ARViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let motionEnabled = false
+        let motionEnabled = true
         
         view.insertSubview(cameraView, at: 0)
         cameraView.frame = view.bounds

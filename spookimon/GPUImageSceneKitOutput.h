@@ -9,8 +9,9 @@
 #import <GPUImage/GPUImage.h>
 @import SceneKit;
 
-@interface GPUImageSceneKitOutput : GPUImageOutput
+@interface GPUImageSceneKitOutput : GPUImageTextureInput
 
+- (instancetype)initWithSize:(CGSize)size;
 - (void)render:(SCNRenderer *)renderer size:(CGSize)size time:(CFTimeInterval)time;
 
 @end

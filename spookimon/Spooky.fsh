@@ -40,8 +40,8 @@ void main()
     }
     
     highp float distFromCenter = sqrt(pow(0.5 - point.x, 2.0) + pow(0.5 - point.y, 2.0));
-    fragmentColor *= (1.0 - 2.0 * spookiness * (max(0.0, distFromCenter - 0.1)));
-    fragmentColor.rg *= (1.0 - spookiness * 0.5);
+    fragmentColor *= (1.0 - 1.5 * spookiness * (max(0.0, distFromCenter - 0.1)));
+    fragmentColor.rg *= (1.0 - spookiness * 0.3);
     
     mediump vec3 hsv = rgb2hsv(fragmentColor.rgb);
     hsv.y = hsv.y * (1.0 - spookiness) + min(hsv.y, 0.8) * spookiness;
